@@ -3,16 +3,16 @@
     <div class="pcp-gdpr-body">
       <button @click="rejectAll" class="pcp-gdpr-close">&times;</button>
       <div class="pcp-gdpr-body-content">
-        <div class="pcp-gdpr-body-content-description" v-html="description"></div>
+        <div class="pcp-gdpr-body-content-description" v-html="options.description"></div>
         <div class="pcp-gdpr-buttons">
           <button
             class="pcp-gdpr-button pcp-gdpr-button-link"
             @click="() => isCustomize = !isCustomize"
-          >Customize</button>
+          >{{options.customizeButtonText}}</button>
         </div>
         <div class="pcp-gdpr-buttons">
-          <button class="pcp-gdpr-button pcp-gdpr-button-secondary" @click="rejectAll">Reject All</button>
-          <button class="pcp-gdpr-button pcp-gdpr-button-primary" @click="acceptAll">Accept All</button>
+          <button class="pcp-gdpr-button pcp-gdpr-button-secondary" @click="rejectAll">{{options.rejectButtonText}}</button>
+          <button class="pcp-gdpr-button pcp-gdpr-button-primary" @click="acceptAll">{{options.acceptButtonText}}</button>
         </div>
       </div>
       <div v-cloak v-show="isCustomize" class="pcp-gdpr-body-content">
@@ -31,7 +31,7 @@
           <button
             @click="savePreferences"
             class="pcp-gdpr-button pcp-gdpr-button-secondary"
-          >Save pref</button>
+          >{{options.saveButtonText}}</button>
         </div>
       </div>
     </div>
@@ -39,13 +39,20 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import useCookies from './useCookies';
 
 const props = defineProps<{
-  description: string
+  options: CookieOptions
   settings: CookieSettings,
   callback: (preferences: CookiePreferences) => void,
 }>()
+
+onMounted(() => {
+  props.options.rejectButtonText = props.options.rejectButtonText || 'Rject All';
+  props.options.acceptButtonText = props.options.acceptButtonText || 'Accept all';
+  props.options.customizeButtonText = props.options.customizeButtonText || 'Customize';
+})
 
 const {
   isOpen,
