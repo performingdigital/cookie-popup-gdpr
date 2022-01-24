@@ -1,6 +1,6 @@
 {
   "name": "@performing/cookie-popup-gdpr",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "dist/cookie-popup-gdpr.umd.js",
   "module": "dist/cookie-popup-gdpr.es.js",
   "unpkg": "dist/cookie-popup-gdpr.umd.js",
