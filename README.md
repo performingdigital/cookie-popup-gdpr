@@ -1,7 +1,44 @@
-# Vue 3 + Vite
+# Cookie Popup Gdpr
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Simple cookie popup to ask consent.
 
-## Recommended IDE Setup
+## Installation
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+```shell
+npm install @performing/cookie-popup-gpdr
+
+```
+
+## Usage
+```javascript
+import '@performing/cookie-popup-gpdr'
+import '@performing/cookie-popup-gpdr/dist/style.css'
+
+useCookies('We use cookies...', {
+  necessary: { 
+    default: true, 
+    optional: false, 
+    description: 'This type of cookie is necessary',
+  },
+  statistics: { 
+    default: false, 
+    optional: true, 
+    description: 'This type of cookie is for gather statistics',
+  },
+}, (p) => { 
+
+  if (p.statistics) {
+    // gather statistics  
+  }
+  
+});
+```
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
