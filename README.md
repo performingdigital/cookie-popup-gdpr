@@ -2,6 +2,9 @@
 
 Simple cookie popup to ask consent.
 
+![image](https://user-images.githubusercontent.com/28866565/150764760-af050ffc-a476-4672-811f-2a3a9f847fcb.png)
+
+
 ## Installation
 
 ```shell
