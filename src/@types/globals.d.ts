@@ -8,6 +8,7 @@ interface CookieOptions {
 interface CookieSettings {
   [key: string]: {
     default: boolean;
+    title: string,
     description: string;
     optional: boolean;
   };

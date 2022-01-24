@@ -17,15 +17,23 @@ npm install @performing/cookie-popup-gpdr
 import '@performing/cookie-popup-gpdr'
 import '@performing/cookie-popup-gpdr/dist/style.css'
 
-useCookies('We use cookies...', {
+useCookies({
+  description: 'We use cookies...',
+  acceptButtonText: 'Accept All',
+  rejectButtonText: 'Reject All',
+  saveButtonText: 'Save',
+  customizeButtonText: 'Customize',
+}, {
   necessary: { 
     default: true, 
     optional: false, 
+    title: 'Necessary:',
     description: 'This type of cookie is necessary',
   },
   statistics: { 
     default: false, 
     optional: true, 
+    title: 'Statistics:',
     description: 'This type of cookie is for gather statistics',
   },
 }, (p) => { 
@@ -33,7 +41,7 @@ useCookies('We use cookies...', {
   if (p.statistics) {
     // gather statistics  
   }
-  
+
 });
 ```
 

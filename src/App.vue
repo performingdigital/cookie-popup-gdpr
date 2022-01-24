@@ -23,7 +23,7 @@
               v-model="preferences[category]"
               :disabled="!settings[category].optional"
             />
-            <p class="pcp-gdpr-body-content-title">{{ category }}</p>
+            <p class="pcp-gdpr-body-content-title">{{ settings[category].title ?? category }}</p>
           </div>
           <p class="pcp-gdpr-body-content-description" v-html="settings[category].description"></p>
         </div>
@@ -49,7 +49,7 @@ const props = defineProps<{
 }>()
 
 onMounted(() => {
-  props.options.rejectButtonText = props.options.rejectButtonText || 'Rject All';
+  props.options.rejectButtonText = props.options.rejectButtonText || 'Reject All';
   props.options.acceptButtonText = props.options.acceptButtonText || 'Accept all';
   props.options.customizeButtonText = props.options.customizeButtonText || 'Customize';
 })
