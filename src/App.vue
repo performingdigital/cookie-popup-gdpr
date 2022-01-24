@@ -1,48 +1,37 @@
 <template>
-  <div v-cloak v-show="isOpen" class="fixed max-w-sm p-6 bottom-0 right-0">
-    <div class="relative p-4 bg-white shadow">
-      <button @click="rejectAll" class="top-0 right-0 absolute text-lg mt-2 mr-2">&times;</button>
-      <div class="space-y-4 flex flex-col">
-        <div
-          class="prose"
-        >Nihil hic munitissimus habendi senatus locus, nihil horum? Morbi fringilla convallis sapien, id pulvinar odio volutpat.</div>
-        <div class="flex items-center gap-4 flex-wrap">
-          <div>
-            <button
-              class="px-3 sm:text-sm rounded text-blue-600"
-              @click="() => isCustomize = !isCustomize"
-            >Customize</button>
-            <button
-              class="px-3 sm:text-sm rounded bg-gray-100 border hover:bg-gray-200 text-gray-800 h-9"
-              @click="rejectAll"
-            >Reject All</button>
-          </div>
+  <div v-cloak v-show="isOpen" class="pcp-gdpr">
+    <div class="pcp-gdpr-body">
+      <button @click="rejectAll" class="pcp-gdpr-close">&times;</button>
+      <div class="pcp-gdpr-body-content">
+        <div class="pcp-gdpr-body-content-description" v-html="description"></div>
+        <div class="pcp-gdpr-buttons">
           <button
-            class="px-3 sm:text-sm rounded bg-blue-600 hover:bg-blue-500 text-white h-9"
-            @click="acceptAll"
-          >Accept All</button>
+            class="pcp-gdpr-button pcp-gdpr-button-link"
+            @click="() => isCustomize = !isCustomize"
+          >Customize</button>
+        </div>
+        <div class="pcp-gdpr-buttons">
+          <button class="pcp-gdpr-button pcp-gdpr-button-secondary" @click="rejectAll">Reject All</button>
+          <button class="pcp-gdpr-button pcp-gdpr-button-primary" @click="acceptAll">Accept All</button>
         </div>
       </div>
-      <div v-cloak v-show="isCustomize">
-        <div>
-          <ul class="flex flex-col justify-between mt-4 space-y-5 mb-5">
-            <li v-for="category in Object.keys(settings)">
-              <p class="text-gray-700">{{ category }}</p>
-              <p>{{ settings[category].description }}</p>
-              <input
-                type="checkbox"
-                v-model="preferences[category]"
-                :disabled="!settings[category].optional"
-              />
-            </li>
-          </ul>
-          <div class="flex items-center justify-between">
-            <div></div>
-            <button
-              @click="savePreferences"
-              class="px-3 sm:text-sm rounded bg-blue-600 hover:bg-blue-500 text-white h-9"
-            >Save pref</button>
+      <div v-cloak v-show="isCustomize" class="pcp-gdpr-body-content">
+        <div v-for="category in Object.keys(settings)">
+          <div class="pcp-gdpr-buttons">
+            <input
+              type="checkbox"
+              v-model="preferences[category]"
+              :disabled="!settings[category].optional"
+            />
+            <p class="pcp-gdpr-body-content-title">{{ category }}</p>
           </div>
+          <p class="pcp-gdpr-body-content-description" v-html="settings[category].description"></p>
+        </div>
+        <div class="pcp-gdpr-buttons">
+          <button
+            @click="savePreferences"
+            class="pcp-gdpr-button pcp-gdpr-button-secondary"
+          >Save pref</button>
         </div>
       </div>
     </div>
@@ -53,6 +42,7 @@
 import useCookies from './useCookies';
 
 const props = defineProps<{
+  description: string
   settings: CookieSettings,
   callback: (preferences: CookiePreferences) => void,
 }>()
