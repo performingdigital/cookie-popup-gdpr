@@ -4,6 +4,7 @@
     right: 0;
     margin-bottom: 16px;
     margin-right: 16px;
+    z-index: 9999;
 
     --content-title-color: #3f3f46;
     --content-description-color: #3f3f46;
