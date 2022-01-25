@@ -25,6 +25,10 @@ export default function (settings: CookieSettings, onSaveCallback: (preferences:
         state.preferences[key] = settings[key].default 
       }
     })
+
+    if (!state.isOpen) {
+      onSaveCallback({...state.preferences});
+    }
   })
 
   function rejectAll() {
