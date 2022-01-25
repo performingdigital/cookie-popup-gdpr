@@ -53,7 +53,6 @@ export default function (settings: CookieSettings, onSaveCallback: (preferences:
     state.isOpen = false;
     state.isCustomize = false;
     let cookie = `cookie-settings=${JSON.stringify(state)}; expires=${new Date(new Date().setHours(24)).toUTCString()}; path=/;`;
-    console.log(cookie);
     document.cookie = cookie;
     onSaveCallback({...state.preferences});
   }
