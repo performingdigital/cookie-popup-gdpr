@@ -14,8 +14,8 @@ npm install @performing/cookie-popup-gpdr
 
 ## Usage
 ```javascript
-import '@performing/cookie-popup-gpdr'
-import '@performing/cookie-popup-gpdr/dist/style.css'
+import '@performing/cookie-popup-gdpr'
+import '@performing/cookie-popup-gdpr/dist/style.css'
 
 useCookies({
   description: 'We use cookies...',
